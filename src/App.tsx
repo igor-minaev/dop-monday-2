@@ -147,7 +147,7 @@ function App() {
     }
 
     function addTask(title: string, todolistId: number) {
-        let newTask: TasksType = {taskId: v1(), title: title, isDone: false};
+        const newTask: TasksType = {taskId: v1(), title: title, isDone: false};
         setTodo(todo.map((el, index) => index === todolistId ? {...el, tasks: [newTask, ...el.tasks]} : el))
     }
 
@@ -170,14 +170,14 @@ function App() {
         <div className="App">
             {
                 todo.map((tl, index) => {
-                    let allTodolistTasks = tl.tasks;
+                    const allTodolistTasks = tl.tasks;
                     let tasksForTodolist = allTodolistTasks;
 
                     if (tl.filter === "active") {
-                        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
+                        tasksForTodolist = allTodolistTasks.filter(t => !t.isDone);
                     }
                     if (tl.filter === "completed") {
-                        tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
+                        tasksForTodolist = allTodolistTasks.filter(t => t.isDone);
                     }
 
                     return <Todolist
